@@ -25,6 +25,8 @@ public class ControllerFind implements Runnable {
 
     public ControllerFind(ViewUserInterface viewUserInterface, double timeToRun, int threadCount) {
 
+        ViewUserInterface.isControllerRunning = true;
+
         this.viewUserInterface = viewUserInterface;
 
         this.timeToRun = timeToRun * 1000.0d;
@@ -43,8 +45,6 @@ public class ControllerFind implements Runnable {
 
     @Override
     public void run() {
-
-        ViewUserInterface.isControllerRunning = true;
 
         Thread.currentThread().setPriority(Thread.MAX_PRIORITY);
 
