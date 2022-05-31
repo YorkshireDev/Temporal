@@ -83,10 +83,13 @@ public class ControllerFind implements Runnable {
 
             for (int powerProcessedTotal : amountPowersProcessedQueue) powersProcessedSum += powerProcessedTotal;
             for (int maxPowerProcessed : largestPowerProcessedQueue) if (maxPowerProcessed > largestPowerProcessed) largestPowerProcessed = maxPowerProcessed;
+            int powerProcessedPerSecond = (int) (((double) powersProcessedSum / timeToRun) * 1000);
 
             benchmarkResult =
                     "Total Processed: " + powersProcessedSum
-                            + System.lineSeparator()
+                            + System.lineSeparator() + System.lineSeparator()
+                            + "Total Processed Per Second: " + powerProcessedPerSecond + " /s"
+                            + System.lineSeparator() + System.lineSeparator()
                             + "Largest Power Processed: 2^" + largestPowerProcessed;
 
         } catch (InterruptedException e) { throw new RuntimeException(e);}
