@@ -34,18 +34,24 @@ It's intended to be more of a fun project than anything useful in the real-world
 
 5. An after-benchmark results window that displays total amount of powers of two processed, as well as the single largest power of two processed
 
----
-
-# Features (Upcoming)
-
-1. A headless mode for giving the option of running the program in a command line interface
+6. A headless mode that runs purely in a command line interface, ideal for benchmarking on a headless operating system
 
 ---
 
-# Usage
+# Usage (Graphical)
 
-1. Double-click the `Temporal.jar` file provided, or open up a terminal and type `java -jar Temporal.jar`
+1. Double-click the `Temporal.jar` file provided, or open up a terminal and type `java -jar Temporal.jar` (no args in the terminal still runs the GUI)
 
 2. Click the "Start" button and wait until the benchmark finishes and gives you a score
 
 3. Optionally, change the time to run and thread-count parameters
+
+---
+
+# Usage (Headless)
+
+1. Open a terminal and type `java -jar Temporal.jar x` where `x` is the time to run, for example `java -jar Temporal.jar 60` will run it for 60 seconds.
+
+2. Optionally, add a second argument for the amount of cores. For example, `java -jar Temporal.jar 60 16` will run the program for 60 seconds with 16 CPU threads. If the second argument is left blank, your CPUs core/thread count is used
+
+3. Wait until the benchmark finishes and gives you a score
