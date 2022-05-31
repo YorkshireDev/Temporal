@@ -8,7 +8,7 @@ import java.util.concurrent.ConcurrentSkipListSet;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class ViewUserInterfaceGraphical extends ViewUserInterface {
+public class ViewUserInterfaceGraphical extends JFrame implements ViewUserInterface {
 
     private JPanel panelMain;
     private JLabel labelFoundPowers;
@@ -26,10 +26,9 @@ public class ViewUserInterfaceGraphical extends ViewUserInterface {
     private DefaultListModel<String> listFoundPowersModel;
 
     private ExecutorService controllerService;
+    public static boolean isControllerRunning;
 
     public ViewUserInterfaceGraphical() {
-
-        super();
 
         SwingUtilities.invokeLater(this::initUserInterface);
         SwingUtilities.invokeLater(this::initNonUserInterface);
@@ -59,7 +58,7 @@ public class ViewUserInterfaceGraphical extends ViewUserInterface {
                 return;
             }
 
-            ControllerFind controllerFind = new ControllerFind(this, timeToRun, threadCount);
+            ControllerFind controllerFind = new ControllerFind(false, this, timeToRun, threadCount);
 
             this.controllerService.submit(controllerFind);
             this.controllerService.shutdown();

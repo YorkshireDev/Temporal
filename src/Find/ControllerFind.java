@@ -1,6 +1,8 @@
 package Find;
 
 import GUI.ViewUserInterface;
+import GUI.ViewUserInterfaceGraphical;
+import GUI.ViewUserInterfaceHeadless;
 
 import java.util.Queue;
 import java.util.concurrent.*;
@@ -10,6 +12,7 @@ public class ControllerFind implements Runnable {
     private static final long TIME_DECREMENT = 500L; // milliseconds
 
     private final ViewUserInterface viewUserInterface;
+    private final boolean headlessMode;
 
     private final double timeToRun;
     private final int threadCount;
@@ -23,9 +26,12 @@ public class ControllerFind implements Runnable {
     static Queue<Integer> amountPowersProcessedQueue;
     static Queue<Integer> largestPowerProcessedQueue;
 
-    public ControllerFind(ViewUserInterface viewUserInterface, double timeToRun, int threadCount) {
+    public ControllerFind(boolean headlessMode, ViewUserInterface viewUserInterface, double timeToRun, int threadCount) {
 
-        ViewUserInterface.isControllerRunning = true;
+        this.headlessMode = headlessMode;
+
+        if (headlessMode) ViewUserInterfaceHeadless.isControllerRunning = true;
+        else ViewUserInterfaceGraphical.isControllerRunning = true;
 
         this.viewUserInterface = viewUserInterface;
 
@@ -98,7 +104,8 @@ public class ControllerFind implements Runnable {
 
         viewUserInterface.showMessage(benchmarkResult, true);
 
-        ViewUserInterface.isControllerRunning = false;
+        if (headlessMode) ViewUserInterfaceHeadless.isControllerRunning = false;
+        else ViewUserInterfaceGraphical.isControllerRunning = false;
 
     }
 

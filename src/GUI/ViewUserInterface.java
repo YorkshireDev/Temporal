@@ -1,13 +1,9 @@
 package GUI;
 
-import javax.swing.*;
+public interface ViewUserInterface {
 
-public abstract class ViewUserInterface extends JFrame {
-
-    public static boolean isControllerRunning;
-
-    public abstract void updateFoundPowersList(int foundPower);
-    public abstract void updateTimeRemaining(String timeRemaining);
-    public abstract void showMessage(String messageText, boolean benchmarkResult);
+    void updateFoundPowersList(int foundPower);
+    void updateTimeRemaining(String timeRemaining);
+    void showMessage(String messageText, boolean benchmarkResult);
 
 }

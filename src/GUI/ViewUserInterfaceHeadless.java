@@ -8,17 +8,18 @@ import java.util.concurrent.ConcurrentSkipListSet;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class ViewUserInterfaceHeadless extends ViewUserInterface {
+public class ViewUserInterfaceHeadless implements ViewUserInterface {
 
     private final double timeToRun;
     private final int threadCount;
-
-    private ExecutorService controllerService;
 
     private final ConcurrentSkipListSet<Integer> foundPowersSet;
     private final List<String> foundPowersList;
 
     private String timeRemaining;
+
+    private ExecutorService controllerService;
+    public static boolean isControllerRunning;
 
     public ViewUserInterfaceHeadless(double timeToRun, int threadCount) {
 
@@ -67,7 +68,7 @@ public class ViewUserInterfaceHeadless extends ViewUserInterface {
 
     public void run() throws InterruptedException {
 
-        ControllerFind controllerFind = new ControllerFind(this, timeToRun, threadCount);
+        ControllerFind controllerFind = new ControllerFind(true, this, timeToRun, threadCount);
 
         this.controllerService.submit(controllerFind);
         this.controllerService.shutdown();
